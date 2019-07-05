@@ -2,6 +2,12 @@ import express =  require("express");
 
 const PORT = 3000
 
+export class Calculadora{
+    sumar(op1:number, op2:number){
+        return op1 + op2
+    }
+}
+
 let main = () =>
 {
     let app : express.Application = express()
@@ -17,8 +23,11 @@ let main = () =>
     app.get('/sumar', function(req: any, res : any){
         let op1 : string = req.query.op1
         let op2 : string = req.query.op2
+        let calculadora = new Calculadora()
         res.render('calculadora', {
-            suma : parseInt(op1) + parseInt(op2)
+            //suma : parseInt(op1) + parseInt(op2)
+            //ahora
+            suma : calculadora.sumar(parseInt(op1), parseInt(op2))
         })
     })
 
